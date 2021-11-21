@@ -1,6 +1,6 @@
 # Solana 101 Create an airdrop program
 
-Welcome to all the learners to the Solana 101 airdrop program development using Javascript quest. In this quest, you’ll learn how to develop an application leveraging the Solana blockchain - which is the fastest growing blockchain community in the world.
+Welcome to all the learners to the Solana 101 airdrop program development quest. In this quest, you’ll learn how to develop an application leveraging the Solana blockchain - which is the fastest growing blockchain community in the world.
 We’ll be developing an airdrop program throughout this quest. Airdrop refers to the act of sending a cryptocurrency to a wallet, usually for free, to either promote the cryptocurrency or enable developers to test out transactions over the blockchain without spending real money.
 This quest assumes that you’ve basic understanding of any one programming language - preferably Javascript. 
 
