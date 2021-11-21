@@ -176,8 +176,72 @@ await airDropSol();
 await getWalletBalance();
 ```
 
-Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. If everything works fine, your output should look like following
+Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. 
+When you combine all the functions, your `index.md` must look like below
+```
+const {
+  Connection,
+  PublicKey,
+  clusterApiUrl,
+  Keypair,
+  LAMPORTS_PER_SOL,
+  Transaction,
+  Account,
+} = require("@solana/web3.js");
 
+//STEP-1 Generating a new wallet keypair
+const newPair = new Keypair();
+console.log(newPair);
+
+//STEP-2 Storing the public and private key
+const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
+const secretKey = newPair._keypair.secretKey;
+
+//STEP-3 Getting the wallet Balance
+const getWalletBalance = async () => {
+  try {
+    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const myWallet = await Keypair.fromSecretKey(secretKey);
+    const walletBalance = await connection.getBalance(
+      new PublicKey(myWallet.publicKey)
+    );
+    console.log(`=> For wallet address ${publicKey}`);
+    console.log(`   Wallet balance: ${parseInt(walletBalance)/LAMPORTS_PER_SOL}SOL`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//STEP-4 Air dropping SOL (in terms of LAMPORTS)
+const airDropSol = async () => {
+  try {
+    const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+    const walletKeyPair = await Keypair.fromSecretKey(secretKey);
+    console.log(`-- Airdropping 5 SOL --`)
+    const fromAirDropSignature = await connection.requestAirdrop(
+      new PublicKey(walletKeyPair.publicKey),
+      5 * LAMPORTS_PER_SOL
+    );
+    await connection.confirmTransaction(fromAirDropSignature);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//STEP-5 Driver function
+const driverFunction = async () => {
+    await getWalletBalance();
+    await airDropSol();
+    await getWalletBalance();
+}
+driverFunction();
+```
+You can run index.md using the following command.
+```
+node index.js
+```
+
+If everything works fine, your output should look like 
 ![1](https://github.com/altsam/create_an_airdrop_program/raw/main/learn_assets/1.png)
 
 ## Conclusion
