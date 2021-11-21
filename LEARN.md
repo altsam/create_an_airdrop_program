@@ -178,7 +178,7 @@ await getWalletBalance();
 
 Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. If everything works fine, your output should look like following
 
-![1]()
+![1](https://github.com/altsam/create_an_airdrop_program/raw/main/learn_assets/1.png)
 
 ## Conclusion
 
