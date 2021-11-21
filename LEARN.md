@@ -1,4 +1,4 @@
-# Solana 101 Create an airdrop program
+# Create an airdrop program with Solana web3.js
 
 Welcome to all the learners to the Solana 101 airdrop program development quest. In this quest, you’ll learn how to develop an application leveraging the Solana blockchain - which is the fastest growing blockchain community in the world.
 We’ll be developing an airdrop program throughout this quest. Airdrop refers to the act of sending a cryptocurrency to a wallet, usually for free, to either promote the cryptocurrency or enable developers to test out transactions over the blockchain without spending real money.
@@ -8,6 +8,7 @@ This quest assumes that you’ve basic understanding of any one programming lang
 
 Before we proceed, do make sure that you’ve node.js installed on your machine. To interact with the Solana blockchain, we need to connect to the Solana network. Solana provides us with a very hand JS package called `web3.js`. 
 Let’s first set up our development environment with a functioning `web3.js` installation. To start a new node.js project, open your terminal in an empty repository and type in the following command.
+
 ```
 npm init -y
 ```
