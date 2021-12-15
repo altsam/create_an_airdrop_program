@@ -6,7 +6,7 @@ This quest assumes that you’ve basic understanding of any one programming lang
 
 ## Setting up your environment
 
-Before we proceed, do make sure that you’ve node.js installed on your machine. To interact with the Solana blockchain, we need to connect to the Solana network. Solana provides us with a very hand JS package called `web3.js`. 
+Before we proceed, do make sure that you’ve node.js installed on your machine. To interact with the Solana blockchain, we need to connect to the Solana network. Solana provides us with a very handy JS package called `web3.js`. 
 Let’s first set up our development environment with a functioning `web3.js` installation. To start a new node.js project, open your terminal in an empty repository and type in the following command.
 
 ```
