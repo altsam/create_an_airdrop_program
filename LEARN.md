@@ -133,11 +133,11 @@ const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 const walletKeyPair = await Keypair.fromSecretKey(secretKey);
 ```
 
-Now, we first create an airdrop signature using the wallet details and the amount of SOL we want to airdrop (you can airdrop at max 5SOL in one transaction). We then await a confirmation for the transaction from the network. Add the following lines to do so.
+Now, we first create an airdrop signature using the wallet details and the amount of SOL we want to airdrop (you can airdrop at max 2SOL in one transaction). We then await a confirmation for the transaction from the network. Add the following lines to do so.
 ```
 const fromAirDropSignature = await connection.requestAirdrop(
     new PublicKey(walletKeyPair.publicKey),
-    5 * LAMPORTS_PER_SOL
+    2 * LAMPORTS_PER_SOL
 );
 await connection.confirmTransaction(fromAirDropSignature);
 ```
@@ -148,10 +148,10 @@ const airDropSol = async () => {
     try {
         const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
         const walletKeyPair = await Keypair.fromSecretKey(secretKey);
-        console.log(`-- Airdropping 5 SOL --`)
+        console.log(`-- Airdropping 2 SOL --`)
         const fromAirDropSignature = await connection.requestAirdrop(
             new PublicKey(walletKeyPair.publicKey),
-            5 * LAMPORTS_PER_SOL
+            2 * LAMPORTS_PER_SOL
         );
         await connection.confirmTransaction(fromAirDropSignature);
     } catch (err) {
@@ -217,10 +217,10 @@ const airDropSol = async () => {
   try {
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
     const walletKeyPair = await Keypair.fromSecretKey(secretKey);
-    console.log(`-- Airdropping 5 SOL --`)
+    console.log(`-- Airdropping 2 SOL --`)
     const fromAirDropSignature = await connection.requestAirdrop(
       new PublicKey(walletKeyPair.publicKey),
-      5 * LAMPORTS_PER_SOL
+      2 * LAMPORTS_PER_SOL
     );
     await connection.confirmTransaction(fromAirDropSignature);
   } catch (err) {
