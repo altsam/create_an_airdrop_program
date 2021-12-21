@@ -176,8 +176,8 @@ await airDropSol();
 await getWalletBalance();
 ```
 
-Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. 
-When you combine all the functions, your `index.md` must look like below
+Basically, we’re first checking the balance of our wallet, airdropping 2 SOL to it and then checking the balance again to confirm that the airdrop was successful. 
+When you combine all the functions, your `index.js` must look like below
 ```
 const {
   Connection,
