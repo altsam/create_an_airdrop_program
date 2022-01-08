@@ -177,7 +177,7 @@ await getWalletBalance();
 ```
 
 Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. 
-When you combine all the functions, your `index.md` must look like below
+When you combine all the functions, your `index.js` must look like below
 ```
 const {
   Connection,
@@ -236,7 +236,7 @@ const driverFunction = async () => {
 }
 driverFunction();
 ```
-You can run index.md using the following command.
+You can run index.js using the following command.
 ```
 node index.js
 ```
