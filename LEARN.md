@@ -81,7 +81,8 @@ const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 ```
 
 Creates a connection object that’ll be used to get the balance. Apart from the main network (called mainnet), Solana also maintains clusters called devnet and testnet. Devnet is the replica of the Solana’s mainnet, and serves as a playground for anyone who wants to try out the features of Solana. `clusterApiUrl` provides us the URL for devnet that we’ll be passing to create our connection object so that we get details of devnet.
-Next, we’ll create a wallet object from the `secretKey`. Type the following command
+
+We already created a wallet object before from Keypair class. But what if we only have the `secretKey` of a pair? No worries, we can create a wallet object from the `secretKey`. Type the following command
 
 ```
 const myWallet = await Keypair.fromSecretKey(secretKey);
