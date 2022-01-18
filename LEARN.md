@@ -51,14 +51,14 @@ Add the following line to `index.js`.
 const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
 ``` 
 
-We’re extracting the public key from `accountInfo` and storing it in a new variable called `myPublicKey` which is of type string.
+We’re extracting the public key from our newly created key pair`newPair` and storing it in a new variable called `publicKey` which is of type string.
 We can do the same thing for a secret key. Add the following lines to your file.
 
 ```
 const secretKey = newPair._keypair.secretKey
 ```
 
-We’re extracting the private key from accountInfo and storing it in a new variable called `secretKey`, which is of type `Uint8Array` of length 64. 
+We’re extracting the private key from the newly created key pair `newPair` and storing it in a new variable called `secretKey`, which is of type `Uint8Array` of length 64. 
 **Never share the private key of your wallet with anyone**. It can be used to clone your wallet and perform transactions without your authorization.
 
 ## Creating the wallet balance function
