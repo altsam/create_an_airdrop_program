@@ -63,7 +63,7 @@ We’re extracting the private key from the newly created key pair `newPair` and
 
 ## Creating the wallet balance function
 
-What if we want to see the balance of our wallet? Now that we’ve seen how to create a wallet, let’s create a function that can utilize the public and private key and print out the wallet balance. Web3.js allows us to view the balance using the `getBalance` method inside the `connection` class that we had imported. Create an empty function signature like the one below.
+What if we want to see the balance of our wallet? Now that we’ve seen how to create a wallet, let’s create a function that can utilize the public and private key and print out the wallet balance. Web3.js allows us to view the balance using the `getBalance` method inside the `Connection` class that we had imported. Create an empty function signature like the one below.
 ```
 const getWalletBalance = async () => {
     try {
@@ -126,7 +126,7 @@ const airDropSol = async () => {
 };
 ```
 
-As we had had done earlier, we need to create a `connection` object and a `walletKeyPair` object for the airdrop function. Add the following commands in the `airDropSol` function.
+As we had had done earlier, we need to create a `Connection` object and a `walletKeyPair` object for the airdrop function. Add the following commands in the `airDropSol` function.
 
 ```
 const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
