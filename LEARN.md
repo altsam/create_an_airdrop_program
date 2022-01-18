@@ -126,17 +126,17 @@ const airDropSol = async () => {
 };
 ```
 
-As we had had done earlier, we need to create a `Connection` object and a `walletKeyPair` object for the airdrop function. Add the following commands in the `airDropSol` function.
+As we had had done earlier, we need to create a `Connection` object and a `myWallet` object for the airdrop function. Add the following commands in the `airDropSol` function.
 
 ```
 const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-const walletKeyPair = await Keypair.fromSecretKey(secretKey);
+const myWallet = await Keypair.fromSecretKey(secretKey);
 ```
 
 Now, we first create an airdrop signature using the wallet details and the amount of SOL we want to airdrop (you can airdrop at max 2SOL in one transaction). We then await a confirmation for the transaction from the network. Add the following lines to do so.
 ```
 const fromAirDropSignature = await connection.requestAirdrop(
-    new PublicKey(walletKeyPair.publicKey),
+    new PublicKey(myWallet.publicKey),
     2 * LAMPORTS_PER_SOL
 );
 await connection.confirmTransaction(fromAirDropSignature);
@@ -147,10 +147,10 @@ Congratulations! You’ve completed the airdrop function. Putting it all togethe
 const airDropSol = async () => {
     try {
         const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-        const walletKeyPair = await Keypair.fromSecretKey(secretKey);
+        const myWallet = await Keypair.fromSecretKey(secretKey);
         console.log(`-- Airdropping 2 SOL --`)
         const fromAirDropSignature = await connection.requestAirdrop(
-            new PublicKey(walletKeyPair.publicKey),
+            new PublicKey(myWallet.publicKey),
             2 * LAMPORTS_PER_SOL
         );
         await connection.confirmTransaction(fromAirDropSignature);
@@ -216,10 +216,10 @@ const getWalletBalance = async () => {
 const airDropSol = async () => {
   try {
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-    const walletKeyPair = await Keypair.fromSecretKey(secretKey);
+    const myWallet = await Keypair.fromSecretKey(secretKey);
     console.log(`-- Airdropping 2 SOL --`)
     const fromAirDropSignature = await connection.requestAirdrop(
-      new PublicKey(walletKeyPair.publicKey),
+      new PublicKey(myWallet.publicKey),
       2 * LAMPORTS_PER_SOL
     );
     await connection.confirmTransaction(fromAirDropSignature);
