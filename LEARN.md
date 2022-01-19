@@ -63,7 +63,7 @@ We’re extracting the private key from accountInfo and storing it in a new vari
 
 ## Creating the wallet balance function
 
-What if we want to see the balance of our wallet? Now that we’ve seen how to create a wallet, let’s create a function that can utilize the public and private key and print out the wallet balance. Web3.js allows us to view the balance using the `getBalance` method inside the `connection` class that we had imported. Create an empty function signature like the one below.
+What if we want to see the balance of our wallet? Now that we’ve seen how to create a wallet, let’s create a function that can utilize the public and private key and print out the wallet balance. Web3.js allows us to view the balance using the `getBalance` method inside the `Connection` class that we had imported. Create an empty function signature like the one below.
 ```
 const getWalletBalance = async () => {
     try {
@@ -80,7 +80,7 @@ Add the following lines inside the ’try’ block.
 const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
 ```
 
-Creates a connection object that’ll be used to get the balance. Apart from the main network (called mainnet), Solana also maintains clusters called devnet and testnet. Devnet is the replica of the Solana’s mainnet, and serves as a playground for anyone who wants to try out the features of Solana. `clusterApiUrl` provides us the URL for devnet that we’ll be passing to create our connection object so that we get details of devnet.
+Creates a `Connection` object that’ll be used to get the balance. Apart from the main network (called mainnet), Solana also maintains clusters called devnet and testnet. Devnet is the replica of the Solana’s mainnet, and serves as a playground for anyone who wants to try out the features of Solana. `clusterApiUrl` provides us the URL for devnet that we’ll be passing to create our connection object so that we get details of devnet.
 Next, we’ll create a wallet object from the `secretKey`. Type the following command
 
 ```
@@ -126,7 +126,7 @@ const airDropSol = async () => {
 };
 ```
 
-As we had had done earlier, we need to create a `connection` object and a `walletKeyPair` object for the airdrop function. Add the following commands in the `airDropSol` function.
+As we had had done earlier, we need to create a `Connection` object and a `walletKeyPair` object for the airdrop function. Add the following commands in the `airDropSol` function.
 
 ```
 const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
@@ -177,7 +177,7 @@ await getWalletBalance();
 ```
 
 Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. 
-When you combine all the functions, your `index.md` must look like below
+When you combine all the functions, your `index.js` must look like below
 ```
 const {
   Connection,
@@ -236,7 +236,7 @@ const driverFunction = async () => {
 }
 driverFunction();
 ```
-You can run index.md using the following command.
+You can run `index.js` using the following command.
 ```
 node index.js
 ```
