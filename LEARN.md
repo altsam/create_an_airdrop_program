@@ -246,4 +246,4 @@ If everything works fine, your output should look like
 
 ## Conclusion
 
-Congratulations on completing the Solana 101 airdrop program quest! With the ever growing Solana development ecosystem, you’re in for a wild and exciting ride. In the upcoming quests, we’ll be dipping our toes in fun projects like creating your very own cryptocurrency, or writing smart contracts for Solana in Rust. **Meanwhile, you can proceed to [Layer3](https://alpha.layer3.xyz/task/create-an-airdrop-program-with-solana-web3-js) and claim your NFT reward for succesfully completing this quest!**
+Congratulations on completing the Solana 101 airdrop program quest! With the ever growing Solana development ecosystem, you’re in for a wild and exciting ride. In the upcoming quests, we’ll be dipping our toes in fun projects like creating your very own cryptocurrency, or writing smart contracts for Solana in Rust. All NFTs for this quest are claimed, do check [Superteam on Layer3](https://alpha.layer3.xyz/daos/superteam) for open bounties and other quests you can complete for NFTs!
