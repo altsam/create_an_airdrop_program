@@ -51,19 +51,19 @@ Add the following line to `index.js`.
 const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
 ``` 
 
-We’re extracting the public key from `accountInfo` and storing it in a new variable called `myPublicKey` which is of type string.
+We’re extracting the public key from our newly created key pair`newPair` and storing it in a new variable called `publicKey` which is of type string.
 We can do the same thing for a secret key. Add the following lines to your file.
 
 ```
 const secretKey = newPair._keypair.secretKey
 ```
 
-We’re extracting the private key from accountInfo and storing it in a new variable called `secretKey`, which is of type `Uint8Array` of length 64. 
+We’re extracting the private key from the newly created key pair `newPair` and storing it in a new variable called `secretKey`, which is of type `Uint8Array` of length 64. 
 **Never share the private key of your wallet with anyone**. It can be used to clone your wallet and perform transactions without your authorization.
 
 ## Creating the wallet balance function
 
-What if we want to see the balance of our wallet? Now that we’ve seen how to create a wallet, let’s create a function that can utilize the public and private key and print out the wallet balance. Web3.js allows us to view the balance using the `getBalance` method inside the `connection` class that we had imported. Create an empty function signature like the one below.
+What if we want to see the balance of our wallet? Now that we’ve seen how to create a wallet, let’s create a function that can utilize the public and private key and print out the wallet balance. Web3.js allows us to view the balance using the `getBalance` method inside the `Connection` class that we had imported. Create an empty function signature like the one below.
 ```
 const getWalletBalance = async () => {
     try {
@@ -126,17 +126,17 @@ const airDropSol = async () => {
 };
 ```
 
-As we had had done earlier, we need to create a `connection` object and a `walletKeyPair` object for the airdrop function. Add the following commands in the `airDropSol` function.
+As we had had done earlier, we need to create a `Connection` object and a `myWallet` object for the airdrop function. Add the following commands in the `airDropSol` function.
 
 ```
 const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-const walletKeyPair = await Keypair.fromSecretKey(secretKey);
+const myWallet = await Keypair.fromSecretKey(secretKey);
 ```
 
 Now, we first create an airdrop signature using the wallet details and the amount of SOL we want to airdrop (you can airdrop at max 2SOL in one transaction). We then await a confirmation for the transaction from the network. Add the following lines to do so.
 ```
 const fromAirDropSignature = await connection.requestAirdrop(
-    new PublicKey(walletKeyPair.publicKey),
+    new PublicKey(myWallet.publicKey),
     2 * LAMPORTS_PER_SOL
 );
 await connection.confirmTransaction(fromAirDropSignature);
@@ -147,10 +147,10 @@ Congratulations! You’ve completed the airdrop function. Putting it all togethe
 const airDropSol = async () => {
     try {
         const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-        const walletKeyPair = await Keypair.fromSecretKey(secretKey);
+        const myWallet = await Keypair.fromSecretKey(secretKey);
         console.log(`-- Airdropping 2 SOL --`)
         const fromAirDropSignature = await connection.requestAirdrop(
-            new PublicKey(walletKeyPair.publicKey),
+            new PublicKey(myWallet.publicKey),
             2 * LAMPORTS_PER_SOL
         );
         await connection.confirmTransaction(fromAirDropSignature);
@@ -177,7 +177,7 @@ await getWalletBalance();
 ```
 
 Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. 
-When you combine all the functions, your `index.md` must look like below
+When you combine all the functions, your `index.js` must look like below
 ```
 const {
   Connection,
@@ -216,10 +216,10 @@ const getWalletBalance = async () => {
 const airDropSol = async () => {
   try {
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-    const walletKeyPair = await Keypair.fromSecretKey(secretKey);
+    const myWallet = await Keypair.fromSecretKey(secretKey);
     console.log(`-- Airdropping 2 SOL --`)
     const fromAirDropSignature = await connection.requestAirdrop(
-      new PublicKey(walletKeyPair.publicKey),
+      new PublicKey(myWallet.publicKey),
       2 * LAMPORTS_PER_SOL
     );
     await connection.confirmTransaction(fromAirDropSignature);
@@ -236,7 +236,7 @@ const driverFunction = async () => {
 }
 driverFunction();
 ```
-You can run index.md using the following command.
+You can run `index.js` using the following command.
 ```
 node index.js
 ```
