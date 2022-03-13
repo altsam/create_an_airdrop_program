@@ -13,19 +13,21 @@ const newPair = new Keypair();
 console.log(newPair);
 
 //STEP-2 Storing the public and private key
-const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
-const secretKey = newPair._keypair.secretKey;
+const publicKey = new PublicKey(newPair.publicKey).toString();
+const secretKey = newPair.secretKey;
 
 //STEP-3 Getting the wallet Balance
 const getWalletBalance = async () => {
   try {
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-    const myWallet =  Keypair.fromSecretKey(secretKey);
+    const myWallet = Keypair.fromSecretKey(secretKey);
     const walletBalance = await connection.getBalance(
       new PublicKey(myWallet.publicKey)
     );
     console.log(`=> For wallet address ${publicKey}`);
-    console.log(`   Wallet balance: ${parseInt(walletBalance)/LAMPORTS_PER_SOL}SOL`);
+    console.log(
+      `   Wallet balance: ${parseInt(walletBalance) / LAMPORTS_PER_SOL}SOL`
+    );
   } catch (err) {
     console.log(err);
   }
@@ -35,8 +37,8 @@ const getWalletBalance = async () => {
 const airDropSol = async () => {
   try {
     const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-    const walletKeyPair =  Keypair.fromSecretKey(secretKey);
-    console.log(`-- Airdropping 2 SOL --`)
+    const walletKeyPair = Keypair.fromSecretKey(secretKey);
+    console.log(`-- Airdropping 2 SOL --`);
     const fromAirDropSignature = await connection.requestAirdrop(
       new PublicKey(walletKeyPair.publicKey),
       2 * LAMPORTS_PER_SOL
@@ -49,8 +51,8 @@ const airDropSol = async () => {
 
 //STEP-5 Driver function
 const driverFunction = async () => {
-    await getWalletBalance();
-    await airDropSol();
-    await getWalletBalance();
-}
+  await getWalletBalance();
+  await airDropSol();
+  await getWalletBalance();
+};
 driverFunction();

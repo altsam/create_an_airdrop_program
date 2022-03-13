@@ -2,27 +2,31 @@
 
 Welcome to all the learners to the Solana 101 airdrop program development quest. In this quest, you’ll learn how to develop an application leveraging the Solana blockchain - which is the fastest growing blockchain community in the world.
 We’ll be developing an airdrop program throughout this quest. Airdrop refers to the act of sending a cryptocurrency to a wallet, usually for free, to either promote the cryptocurrency or enable developers to test out transactions over the blockchain without spending real money.
-This quest assumes that you’ve basic understanding of any one programming language - preferably Javascript. 
+This quest assumes that you’ve basic understanding of any one programming language - preferably Javascript.
 
 ## Setting up your environment
 
-Before we proceed, do make sure that you’ve node.js installed on your machine. To interact with the Solana blockchain, we need to connect to the Solana network. Solana provides us with a very handy JS package called `web3.js`. 
+Before we proceed, do make sure that you’ve node.js installed on your machine. To interact with the Solana blockchain, we need to connect to the Solana network. Solana provides us with a very handy JS package called `web3.js`.
 Let’s first set up our development environment with a functioning `web3.js` installation. To start a new node.js project, open your terminal in an empty repository and type in the following command.
 
 ```
 npm init -y
 ```
+
 This creates a file called `package.json` which is used to track all the npm packages i.e. node packages that will be used in your project. Let’s install the Solana `web3.js` package. To do so, type in the following command.
+
 ```
 npm install --save @solana/web3.js
 ```
-Congratulations, now you’re all set to start developing JS applications on Solana. 
-**Note :The quest was written with @solana/web3.js v1.30.2.** If some of the functions in the quest do not work, go to package.json and edit the version field of web3.js in dependencies to “v1.30.2”. 
+
+Congratulations, now you’re all set to start developing JS applications on Solana.
+**Note :The quest was written with @solana/web3.js v1.31.0.** If some of the functions in the quest do not work, go to package.json and edit the version field of web3.js in dependencies to “v1.31.0”.
 
 Generating a new wallet
 To transact money on the blockchain, you need to use a software that facilitates these transactions called a wallet. Crypto wallets are physical devices or virtual programs that allow us to easily store and retrieve our crypto assets i.e. any cryptocurrencies that we might have on the blockchain.
 
 Create a new file called `index.js` in your project directory. During this quest, we’ll be editing this file. Let’s import the required modules that we’ll be using soon. Add this to the newly created file..
+
 ```
 const {
  Connection,
@@ -36,34 +40,37 @@ const {
 ```
 
 The `Keypair` class that we just imported allows us to create a new wallet. Add the following lines in `index.js`
+
 ```
 const newPair = new Keypair();
 ```
+
 We now have a wallet object of type `Keypair` and will be airdropping SOL into this wallet.
 
 ## Storing the wallet credentials
 
-Every crypto wallet has two components to it - a public key and a secret(aka private) key. The public key is used to uniquely identify your wallet over the blockchain and can be used to receive crypto to your wallet. The private key is used to perform transactions through your wallet. 
-The `newPair` instance that we created in the previous section holds the public key and the secret key. 
+Every crypto wallet has two components to it - a public key and a secret(aka private) key. The public key is used to uniquely identify your wallet over the blockchain and can be used to receive crypto to your wallet. The private key is used to perform transactions through your wallet.
+The `newPair` instance that we created in the previous section holds the public key and the secret key.
 Add the following line to `index.js`.
 
 ```
-const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
-``` 
+const publicKey = new PublicKey(newPair.publicKey).toString();
+```
 
 We’re extracting the public key from `accountInfo` and storing it in a new variable called `myPublicKey` which is of type string.
 We can do the same thing for a secret key. Add the following lines to your file.
 
 ```
-const secretKey = newPair._keypair.secretKey
+const secretKey = newPair.secretKey
 ```
 
-We’re extracting the private key from accountInfo and storing it in a new variable called `secretKey`, which is of type `Uint8Array` of length 64. 
+We’re extracting the private key from accountInfo and storing it in a new variable called `secretKey`, which is of type `Uint8Array` of length 64.
 **Never share the private key of your wallet with anyone**. It can be used to clone your wallet and perform transactions without your authorization.
 
 ## Creating the wallet balance function
 
 What if we want to see the balance of our wallet? Now that we’ve seen how to create a wallet, let’s create a function that can utilize the public and private key and print out the wallet balance. Web3.js allows us to view the balance using the `getBalance` method inside the `connection` class that we had imported. Create an empty function signature like the one below.
+
 ```
 const getWalletBalance = async () => {
     try {
@@ -97,6 +104,7 @@ console.log(`Wallet balance: ${walletBalance}`);
 ```
 
 Finally, the combined function alongwith a few console logs looks like:
+
 ```
 const getWalletBalance = async () => {
     try {
@@ -134,6 +142,7 @@ const walletKeyPair = await Keypair.fromSecretKey(secretKey);
 ```
 
 Now, we first create an airdrop signature using the wallet details and the amount of SOL we want to airdrop (you can airdrop at max 2SOL in one transaction). We then await a confirmation for the transaction from the network. Add the following lines to do so.
+
 ```
 const fromAirDropSignature = await connection.requestAirdrop(
     new PublicKey(walletKeyPair.publicKey),
@@ -142,7 +151,8 @@ const fromAirDropSignature = await connection.requestAirdrop(
 await connection.confirmTransaction(fromAirDropSignature);
 ```
 
-Congratulations! You’ve completed the airdrop function. Putting it all together with a few console logs turns out to be 
+Congratulations! You’ve completed the airdrop function. Putting it all together with a few console logs turns out to be
+
 ```
 const airDropSol = async () => {
     try {
@@ -167,17 +177,19 @@ Now that we’ve completed the required functions, let’s test them out by crea
 ```
 const driverFunction = async () => {
 }
-``` 
+```
 
 Now, add the following three lines to it.
+
 ```
 await getWalletBalance();
 await airDropSol();
 await getWalletBalance();
 ```
 
-Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful. 
-When you combine all the functions, your `index.md` must look like below
+Basically, we’re first checking the balance of our wallet, airdropping 5 SOL to it and then checking the balance again to confirm that the airdrop was successful.
+When you combine all the functions, your `index.js` must look like below
+
 ```
 const {
   Connection,
@@ -194,8 +206,8 @@ const newPair = new Keypair();
 console.log(newPair);
 
 //STEP-2 Storing the public and private key
-const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
-const secretKey = newPair._keypair.secretKey;
+const publicKey = new PublicKey(newPair.publicKey).toString();
+const secretKey = newPair.secretKey;
 
 //STEP-3 Getting the wallet Balance
 const getWalletBalance = async () => {
@@ -236,12 +248,14 @@ const driverFunction = async () => {
 }
 driverFunction();
 ```
+
 You can run index.md using the following command.
+
 ```
 node index.js
 ```
 
-If everything works fine, your output should look like 
+If everything works fine, your output should look like
 ![1](https://github.com/altsam/create_an_airdrop_program/raw/main/learn_assets/1.png)
 
 ## Conclusion
